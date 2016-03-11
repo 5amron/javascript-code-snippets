@@ -1,0 +1,11 @@
+{
+  "name": "simple_caculator",
+  "version": "0.0.0",
+  "description": "it's just a simple calculator app!",
+  "main": "simple_calculator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "samronsadeghyan@gmail.com",
+  "license": "ISC"
+}
