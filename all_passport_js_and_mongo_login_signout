@@ -67,3 +67,59 @@ passport.deserializeUser(function(user, done) {
 
 });
 
+
+
+
+//============login====POST=================================================================
+app.post('/', passport.authenticate('local',{
+    successRedirect: '/chatting',
+    failureRedirect: '/loginFailure'
+  })
+
+    //res.end(JSON.stringify(login_data));
+);
+
+//============signup====POST=================================================================
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.post('/hello', urlencodedParser, function (req, res) {
+
+   // Prepare output in JSON format
+   signup_data = {
+       full_name:req.body.input_3,
+       username:req.body.input_4,
+       email:req.body.input_5,
+       pass_1:req.body.input_6,
+       pass_2:req.body.input_7
+   };
+   //console.log(signup_data);
+
+   if (req.body.input_3.length<3|| req.body.input_4.length<3 || req.body.input_5.length<3 || req.body.input_6.length<3||req.body.input_7.length<3) {
+      console.log('length of inputs is under than 3!');
+   } else{
+       var record = new my_schema(signup_data);
+
+     record.save(function(err) {
+        if(err){
+          console.log('error with storing in db!');
+          res.redirect('/signup');
+          console.log('err');
+        }else {
+          console.log('data sent to database!'); 
+          res.redirect('/');
+        }
+
+     });
+   };
+
+
+
+   //res.end(JSON.stringify(signup_data));
+});
+//------------------------------------------------------------------------------------
+
+
+
+
+
+
+
