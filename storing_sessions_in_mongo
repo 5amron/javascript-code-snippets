@@ -1,0 +1,8 @@
+app.use(session({
+  secret:process.env.SESSION_secret || 'secret',          //this is actually the encrypt of your data
+    store: new mongo_store_session({                      //this is where we store sessions
+      mongooseConnection: db
+    }),
+  resave:false,
+  saveUninitialized:false
+}));
