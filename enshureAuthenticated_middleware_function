@@ -1,0 +1,20 @@
+//++++++++++++++++++++++ensuring about authentication++++++++++++++++++++++++++++++++++
+app.get('/chatting',ensureAuthenticated, function (req, res) {
+
+  res.render('chatting_page', {
+    title: 'chatting',
+    username_new: req.user.username,
+    port_new: port
+  });
+});
+
+
+function ensureAuthenticated(req, res, next){
+  if( req.isAuthenticated() ) {
+    return next();
+  }else{
+    res.redirect('/');
+  }
+}
+
+
